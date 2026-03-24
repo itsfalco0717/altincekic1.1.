@@ -1,0 +1,21 @@
+<!-- MAIN VIEW -->
+<div id="mainView">
+  <div class="hero">
+    <div class="hero-tag"><i class="fa-solid fa-star"></i>&nbsp;Canlı Açık Artırma</div>
+    <h1>Eşsiz Fırsatlar,<br><em>Gerçek Zamanlı</em> Teklifler</h1>
+    <p>Türkiye'nin en şeffaf dijital mezat platformunda en iyi ürünlere sahip olma fırsatını kaçırma.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-gold" id="heroAuthBtn" onclick="openAuthModal()"><i class="fa-solid fa-bolt"></i> Hemen Başla</button>
+      <button class="btn btn-outline" onclick="document.getElementById('auctionsSection').scrollIntoView({behavior:'smooth'})"><i class="fa-solid fa-layer-group"></i> Aktif Mezatlar</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num" id="statActive">0</span><span class="label">Aktif Mezat</span></div>
+    </div>
+  </div>
+  <div class="section" id="auctionsSection">
+    <div class="section-header">
+      <div class="section-title"><span class="line"></span> Aktif Mezatlar <div class="live-badge">CANLI</div></div>
+    </div>
+    <div class="auction-grid" id="auctionGrid"></div>
+  </div>
+</div>

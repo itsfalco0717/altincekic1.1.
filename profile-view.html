@@ -1,0 +1,21 @@
+<!-- PROFILE VIEW -->
+<div id="profileView">
+  <div class="profile-header">
+    <div class="profile-avatar" id="profileAvatar">A</div>
+    <div class="profile-info">
+      <div class="profile-name" id="profileName">—</div>
+      <div class="profile-email" id="profileEmail">—</div>
+      <div class="profile-joined" id="profileJoined"></div>
+    </div>
+    <button class="btn btn-outline" onclick="showHome()"><i class="fa-solid fa-arrow-left"></i> Anasayfa</button>
+  </div>
+  <div class="balance-cards" id="balanceCards"></div>
+  <div class="profile-tabs">
+    <button class="ptab active" onclick="switchProfileTab('bids')" id="ptabBids"><i class="fa-solid fa-gavel"></i> Tekliflerim</button>
+    <button class="ptab" onclick="switchProfileTab('myauctions')" id="ptabMy"><i class="fa-solid fa-store"></i> Mezatlarım</button>
+    <button class="ptab" onclick="switchProfileTab('history')" id="ptabHist"><i class="fa-solid fa-clock-rotate-left"></i> Geçmiş</button>
+  </div>
+  <div id="profileBids"></div>
+  <div id="profileMyAuctions" style="display:none"></div>
+  <div id="profileHistory" style="display:none"></div>
+</div>

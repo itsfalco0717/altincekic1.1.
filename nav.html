@@ -1,0 +1,26 @@
+<!-- NAV -->
+<nav>
+  <a class="logo" onclick="showHome()">
+    <i class="fa-solid fa-gavel"></i> AltınÇekiç<span class="dot">/ mezat</span>
+  </a>
+  <div class="nav-right">
+    <div class="balance-badge" id="navBalance" style="display:none">
+      <i class="fa-solid fa-coins"></i><span id="balanceText">5.000,00 TL</span>
+    </div>
+    <button class="btn btn-outline" id="profileNavBtn" onclick="showProfile()" style="display:none">
+      <i class="fa-solid fa-user"></i><span style="display:none" class="nav-label-long"> Profil</span>
+    </button>
+    <button class="btn btn-gold" id="addAuctionNavBtn" onclick="openAddAuctionModal()" style="display:none">
+      <i class="fa-solid fa-plus"></i> Mezat Ekle
+    </button>
+    <button class="btn btn-outline" id="adminBtn" onclick="openAdminAuth()" title="Admin">
+      <i class="fa-solid fa-shield-halved"></i>
+    </button>
+    <button class="btn btn-gold" id="authBtn" onclick="openAuthModal()">
+      <i class="fa-solid fa-right-to-bracket"></i> Giriş Yap
+    </button>
+    <button class="btn btn-outline" id="logoutBtn" onclick="logout()" style="display:none">
+      <i class="fa-solid fa-right-from-bracket"></i>
+    </button>
+  </div>
+</nav>

@@ -1,0 +1,118 @@
+<!-- ══ MODALS ══ -->
+
+<!-- Auth -->
+<div class="modal-bg" id="authModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('authModal')"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-title">AltınÇekiç'e Hoş Geldin</div>
+    <div class="modal-sub">Hesabına giriş yap veya ücretsiz kayıt ol</div>
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('login')" id="tabLogin">Giriş Yap</button>
+      <button class="tab" onclick="switchTab('register')" id="tabRegister">Kayıt Ol</button>
+    </div>
+    <div class="tab-panel active" id="panelLogin">
+      <div class="alert alert-error" id="loginAlert"></div>
+      <div class="form-group"><label>E-posta</label><input type="email" id="loginEmail" placeholder="ornek@mail.com" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <div class="form-group"><label>Şifre</label><input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <button class="modal-btn" onclick="doLogin()"><i class="fa-solid fa-right-to-bracket"></i> Giriş Yap</button>
+    </div>
+    <div class="tab-panel" id="panelRegister">
+      <div class="alert alert-error" id="regAlert"></div>
+      <div class="form-group"><label>Ad Soyad</label><input type="text" id="regName" placeholder="Ahmet Yılmaz"></div>
+      <div class="form-group"><label>E-posta</label><input type="email" id="regEmail" placeholder="ornek@mail.com"></div>
+      <div class="form-group"><label>Telefon Numarası *</label><input type="tel" id="regPhone" placeholder="05XXXXXXXXX"></div>
+      <div class="form-group"><label>Şifre (min 6 karakter)</label><input type="password" id="regPass" placeholder="••••••••"></div>
+      <div class="divider"></div>
+      <div style="font-size:.8rem;color:var(--text-dimmer);margin-bottom:12px;text-align:center"><i class="fa-solid fa-gift" style="color:var(--gold)"></i> Kayıt olana <strong style="color:var(--gold)">5.000 TL</strong> hoş geldin bonusu!</div>
+      <button class="modal-btn" onclick="doRegister()"><i class="fa-solid fa-user-plus"></i> Ücretsiz Kayıt Ol</button>
+    </div>
+  </div>
+</div>
+
+<!-- SMS Verification -->
+<div class="modal-bg" id="smsVerifyModal">
+  <div class="modal" style="max-width:380px">
+    <button class="modal-close" onclick="closeModal('smsVerifyModal')"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-title"><i class="fa-solid fa-mobile" style="color:var(--gold)"></i> Telefon Doğrulama</div>
+    <div class="modal-sub" id="smsVerifyPhone">Telefon numarası</div>
+    <div class="alert alert-error" id="smsVerifyAlert"></div>
+    <div style="background:var(--bg-dim);padding:12px;border-radius:6px;margin:12px 0;text-align:center">
+      <div style="font-size:.8rem;color:var(--text-dim);margin-bottom:8px">📱 SMS ile gönderilen 6 haneli kodu girin:</div>
+      <input type="text" id="smsVerifyCode" placeholder="000000" maxlength="6" style="text-align:center;font-size:1.2rem;letter-spacing:4px" onkeydown="if(event.key==='Enter')verifySmsCode()">
+    </div>
+    <button class="modal-btn" onclick="verifySmsCode()"><i class="fa-solid fa-check"></i> Doğrula</button>
+    <button class="modal-btn ghost" style="margin-top:.5rem" onclick="closeModal('smsVerifyModal')">İptal Et</button>
+  </div>
+</div>
+
+<!-- Admin Auth -->
+<div class="modal-bg" id="adminAuthModal">
+  <div class="modal" style="max-width:340px">
+    <button class="modal-close" onclick="closeModal('adminAuthModal')"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-title"><i class="fa-solid fa-lock" style="color:var(--gold)"></i> Admin Girişi</div>
+    <div class="modal-sub">Yönetici şifresini girin</div>
+    <div class="alert alert-error" id="adminAuthAlert"></div>
+    <div class="form-group"><label>Admin Şifresi</label><input type="password" id="adminPassInput" placeholder="••••" onkeydown="if(event.key==='Enter')checkAdminPass()"></div>
+    <button class="modal-btn" onclick="checkAdminPass()"><i class="fa-solid fa-shield-halved"></i> Panele Gir</button>
+  </div>
+</div>
+
+<!-- Bid -->
+<div class="modal-bg" id="bidModal">
+  <div class="modal" style="max-width:400px">
+    <button class="modal-close" onclick="closeModal('bidModal')"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-title">Teklif Ver</div>
+    <div class="modal-sub" id="bidModalItemName">Ürün</div>
+    <div class="bid-modal-amount">
+      <div class="amount-label">Teklif Tutarınız (Mevcut + %10)</div>
+      <div class="amount-val" id="bidModalAmount">0,00 TL</div>
+    </div>
+    <div class="bid-info-row"><span class="key">Mevcut Bakiyeniz</span><span class="val" id="bidModalBalance">—</span></div>
+    <div class="bid-info-row"><span class="key">Teklif Sonrası Bakiye</span><span class="val" id="bidModalAfterBalance">—</span></div>
+    <div class="divider"></div>
+    <div class="alert alert-error" id="bidAlert"></div>
+    <button class="modal-btn" onclick="confirmBid()"><i class="fa-solid fa-gavel"></i> Teklifi Onayla</button>
+    <button class="modal-btn ghost" style="margin-top:.5rem" onclick="closeModal('bidModal')">Vazgeç</button>
+  </div>
+</div>
+
+<!-- Add Auction (User) -->
+<div class="modal-bg" id="addAuctionModal">
+  <div class="modal" style="max-width:480px">
+    <button class="modal-close" onclick="closeModal('addAuctionModal')"><i class="fa-solid fa-xmark"></i></button>
+    <div class="modal-title"><i class="fa-solid fa-mobile" style="color:var(--gold)"></i> Telefon Mezata Ekle</div>
+    <div class="modal-sub">Telefonunuzu kaptan seçin, fiyatlandırma önerileri gösterilecektir.</div>
+    <div class="alert alert-error" id="userAuctionAlert"></div>
+    <div class="alert alert-success" id="userAuctionSuccess"></div>
+    <div class="form-group"><label>Telefon Markası *</label>
+      <select id="uPhoneBrand" onchange="updatePhoneModels()">
+        <option value="">-- Marka Seçin --</option>
+        <option value="Apple">🍎 Apple</option>
+        <option value="Samsung">📱 Samsung</option>
+        <option value="Xiaomi">📱 Xiaomi</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Telefon Modeli *</label>
+      <select id="uPhoneModel" onchange="showPricingTable()">
+        <option value="">Önce marka seçin</option>
+      </select>
+    </div>
+    <div id="phonePricingTable" style="display:none;margin:12px 0;padding:12px;background:var(--bg-dim);border-radius:6px;border-left:3px solid var(--gold)"></div>
+    <div class="form-group"><label>Açıklama</label><textarea id="uProdDesc" rows="2" placeholder="Kısa açıklama (opsiyonel)"></textarea></div>
+    <div class="form-group"><label>Başlangıç Fiyatı (TL) *</label><input type="number" id="uProdPrice" placeholder="100" min="1" oninput="calculateCommission()"></div>
+    <div id="commissionInfo" style="display:none;margin:-8px 0 12px 0;padding:8px;background:rgba(241,196,15,.1);border-left:3px solid var(--gold);border-radius:4px;font-size:.8rem">
+      <div style="color:var(--text-dim);margin-bottom:4px">💰 Komisyon Hesaplaması:</div>
+      <div>Başlangıç Fiyatı: <strong id="commPrice">0</strong> TL</div>
+      <div style="color:#F44336;margin-top:4px">Komisyon (%10): <strong id="commAmount">0</strong> TL</div>
+      <div style="color:#4CAF50;margin-top:4px;font-weight:600">Sizin Alacağınız: <strong id="commNet">0</strong> TL</div>
+    </div>
+    <div class="form-group"><label>Süre (Dakika) *</label><input type="number" id="uProdMinutes" placeholder="60" min="5" max="1440">
+      <div class="form-hint">Min 5, Maks 1440 dakika (24 saat)</div></div>
+    <div class="divider"></div>
+    <div class="form-group"><label><i class="fa-solid fa-image" style="color:var(--gold);margin-right:6px"></i>Görsel Yükle (Opsiyonel)</label><input type="file" id="uProdImg" accept="image/*"><div class="form-hint">JPG, PNG, GIF vb. formatlar desteklenmektedir</div></div>
+    <div class="divider"></div>
+    <button class="modal-btn" onclick="submitUserAuction()" style="width:100%"><i class="fa-solid fa-paper-plane"></i> Onaya Gönder</button>
+  </div>
+</div>
+
+<div id="toastWrap"></div>
