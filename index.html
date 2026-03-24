@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head id="head-container">
+  <!-- Head contents loaded from components/head.html -->
+</head>
+
+<body>
+  <!-- ════════════════════════════════════════════════ -->
+  <!--           COMPONENTS (Dinamik Yükleme)         -->
+  <!-- ════════════════════════════════════════════════ -->
+
+  <!-- NAV: components/nav.html -->
+  <div id="nav-container"></div>
+
+  <!-- MAIN VIEW: components/main-view.html -->
+  <div id="main-view-container"></div>
+
+  <!-- PROFILE VIEW: components/profile-view.html -->
+  <div id="profile-view-container"></div>
+
+  <!-- ADMIN PANEL: components/admin-panel.html -->
+  <div id="admin-panel-container"></div>
+
+  <!-- MODALS: components/modals.html -->
+  <div id="modals-container"></div>
+
+  <!-- FOOTER: components/footer.html -->
+  <div id="footer-container"></div>
+
+  <!-- SCRIPTS -->
+  <script src="script.js"></script>
+  <script>
+    // ════════════════════════════════════════════════
+    // HTML Components Loader System
+    // ════════════════════════════════════════════════
+    async function loadComponent(containerId, filePath) {
+      try {
+        const response = await fetch(filePath);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const html = await response.text();
+        document.getElementById(containerId).innerHTML = html;
+      } catch (error) {
+        console.error(`❌ Hata: ${filePath} yüklenemedι:`, error);
+      }
+    }
+
+    // DOMContentLoaded: Tüm componentleri async yükle
+    window.addEventListener('DOMContentLoaded', async () => {
+      console.log('🔄 Uygulamayı başlatıyorum... components/ yükleniyor');
+
+      // Head'ı özel olarak yükle (head etiketi içine)
+      try {
+        const headResponse = await fetch('components/head.html');
+        const headContent = await headResponse.text();
+        document.head.innerHTML += headContent;
+      } catch (e) {
+        console.error('❌ Head yükleme hatası:', e);
+      }
+
+      // Diğer componentleri paralel olarak yükle
+      await Promise.all([
+        loadComponent('nav-container', 'components/nav.html'),
+        loadComponent('main-view-container', 'components/main-view.html'),
+        loadComponent('profile-view-container', 'components/profile-view.html'),
+        loadComponent('admin-panel-container', 'components/admin-panel.html'),
+        loadComponent('modals-container', 'components/modals.html'),
+        loadComponent('footer-container', 'components/footer.html')
+      ]);
+
+      console.log('✅ Tüm componentler yüklendi!');
+
+      // Uygulamayı başlat
+      updateUI();
+    });
+  </script>
+
+  <!--
+  ╔══════════════════════════════════════════════════════════════════════════════╗
+  ║                   📁 COMPONENTS YAPISI                                     ║
+  ╠══════════════════════════════════════════════════════════════════════════════╣
+  ║  components/                                                                ║
+  ║  ├── head.html            → <head> meta, fonts, linksler                 ║
+  ║  ├── nav.html             → Navigation bar                               ║
+  ║  ├── main-view.html       → Anasayfa (hero + auctions)                 ║
+  ║  ├── profile-view.html    → Profil sayfası                             ║
+  ║  ├── admin-panel.html     → Admin yönetim paneli                       ║
+  ║  ├── modals.html          → Tüm modal pencereler                       ║
+  ║  └── footer.html          → Footer                                     ║
+  ║                                                                          ║
+  ║  🎯 Bu index.html dosyası sadece konteynerleri tanımlar.               ║
+  ║     JavaScript otomatik olarak components/ dosyalarını yükler.          ║
+  ╚══════════════════════════════════════════════════════════════════════════════╝
+  -->
+
+</body>
+
+</html>
